@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="title desc">
+  <title id="title">Abstract feedback workspace</title>
+  <desc id="desc">Layered message cards and response markers in charcoal, cream, and lime.</desc>
+  <rect width="800" height="450" fill="#ecebe2"/>
+  <circle cx="704" cy="80" r="112" fill="#c9f269"/>
+  <path d="M0 355c123-53 220-58 330-10 113 49 253 48 470-35v140H0z" fill="#20231f"/>
+  <g transform="rotate(-5 333 215)">
+    <rect x="117" y="72" width="442" height="265" rx="30" fill="#fffef8" stroke="#20231f" stroke-width="8"/>
+    <rect x="153" y="111" width="184" height="18" rx="9" fill="#20231f"/>
+    <rect x="153" y="151" width="354" height="13" rx="6.5" fill="#d7d7cc"/>
+    <rect x="153" y="178" width="286" height="13" rx="6.5" fill="#d7d7cc"/>
+    <path d="M153 236h63l17-24 23 48 25-36 21 12h76" fill="none" stroke="#a9db3f" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="410" y="276" width="97" height="28" rx="14" fill="#c9f269"/>
+  </g>
+  <g fill="#20231f">
+    <circle cx="637" cy="194" r="44"/>
+    <path d="m615 194 15 15 28-34" fill="none" stroke="#c9f269" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <path d="M594 280h111a18 18 0 0 1 18 18v48a18 18 0 0 1-18 18h-55l-28 26 5-26h-33a18 18 0 0 1-18-18v-48a18 18 0 0 1 18-18Z" fill="#fffef8" stroke="#20231f" stroke-width="7"/>
+  <circle cx="615" cy="322" r="7" fill="#20231f"/><circle cx="650" cy="322" r="7" fill="#20231f"/><circle cx="685" cy="322" r="7" fill="#20231f"/>
+</svg>

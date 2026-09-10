@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Earn On Venture</title>
+  <rect width="64" height="64" rx="16" fill="#20231f"/>
+  <path d="M15 17h34v10H26v5h19v9H26v6h23v10H15z" fill="#c9f269"/>
+  <path d="M42 17 32 32l10 15h-9L23 32l10-15z" fill="#fffef8" opacity=".95"/>
+</svg>

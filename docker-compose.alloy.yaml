@@ -1,8 +1,44 @@
 services:
-  site:
-    image: nginx:1.27-alpine
+  db:
+    image: mariadb:11.4
     network_mode: host
+    environment:
+      MARIADB_DATABASE: earn_on_venture
+      MARIADB_USER: eov
+      MARIADB_PASSWORD: eov_local_password
+      MARIADB_ROOT_PASSWORD: eov_local_root_password
+    command: --bind-address=127.0.0.1 --port=3306
     volumes:
-      - ./public:/usr/share/nginx/html:ro
-      - ./nginx.alloy.conf:/etc/nginx/conf.d/default.conf:ro
+      - eov_mysql:/var/lib/mysql
+      - ./database.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
     restart: unless-stopped
+
+  site:
+    build:
+      context: .
+      dockerfile: Dockerfile.alloy
+      network: host
+    network_mode: host
+    environment:
+      DB_HOST: 127.0.0.1
+      DB_PORT: 3306
+      DB_NAME: earn_on_venture
+      DB_USER: eov
+      DB_PASS: eov_local_password
+      SITE_URL: http://localhost:3000
+      IS_ALLOY: ${IS_ALLOY:-true}
+    volumes:
+      - .:/var/www/html
+    command: bash -lc "chown -R www-data:www-data /var/www/html/uploads && apache2-foreground"
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  eov_mysql:

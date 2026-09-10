@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /dashboard.php
+Disallow: /profile.php
+Disallow: /logout.php
+Disallow: /install.php
+Disallow: /uploads/
+
+Sitemap: https://earnonventure.com/sitemap.xml

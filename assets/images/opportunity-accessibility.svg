@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="title desc">
+  <title id="title">Abstract accessible interface</title>
+  <desc id="desc">A clear modular interface connected by inclusive navigation paths.</desc>
+  <rect width="800" height="450" fill="#20231f"/>
+  <path d="M0 70 180 0h620v450H0z" fill="#343831"/>
+  <circle cx="142" cy="115" r="72" fill="#c9f269"/>
+  <circle cx="142" cy="115" r="25" fill="#20231f"/>
+  <path d="M142 146v112m-60-76 60-28 64 28m-64 70-48 92m48-92 54 92" fill="none" stroke="#c9f269" stroke-width="21" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="284" y="65" width="407" height="306" rx="28" fill="#fffef8"/>
+  <rect x="319" y="101" width="337" height="45" rx="12" fill="#ecebe2"/>
+  <circle cx="347" cy="123" r="10" fill="#a9db3f"/>
+  <rect x="371" y="115" width="116" height="16" rx="8" fill="#20231f"/>
+  <rect x="319" y="177" width="145" height="158" rx="18" fill="#c9f269"/>
+  <path d="M351 217h82M351 246h55M351 290h43" stroke="#20231f" stroke-width="12" stroke-linecap="round"/>
+  <rect x="490" y="177" width="166" height="70" rx="18" fill="#ecebe2"/>
+  <rect x="490" y="265" width="166" height="70" rx="18" fill="#20231f"/>
+  <path d="M521 208h104M521 296h68" stroke="#fffef8" stroke-width="12" stroke-linecap="round"/>
+  <path d="M521 208h104" stroke="#20231f" stroke-width="12" stroke-linecap="round"/>
+  <path d="m702 297 49 29-25 8-11 26z" fill="#c9f269" stroke="#20231f" stroke-width="7" stroke-linejoin="round"/>
+</svg>

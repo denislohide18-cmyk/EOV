@@ -1,0 +1,121 @@
+EARN ON VENTURE - HOSTINGER DEPLOYMENT
+Domain: earnonventure.com
+
+Use this guide for Hostinger Web/Business Hosting with hPanel. The application can be uploaded directly; SSH or Composer is not required.
+
+1. POINT THE DOMAIN AND ENABLE SSL
+
+- In hPanel, open Websites > Add website and attach earnonventure.com to the hosting plan.
+- If DNS is not already managed by Hostinger, use the nameservers shown in hPanel or point the domain's A record to the hosting IP. DNS changes can take up to 24 hours.
+- Open Websites > Manage > Security > SSL and enable the free SSL certificate for earnonventure.com and www.earnonventure.com.
+- In Websites > Manage > Domains, enable Force HTTPS after the SSL status is Active.
+- Set the preferred/canonical domain to earnonventure.com (without www). Redirect www to the non-www domain.
+
+2. SELECT PHP 8.1 OR NEWER
+
+- Open Websites > Manage > Advanced > PHP Configuration.
+- Select PHP 8.1 or a newer supported 8.x release.
+- In PHP Extensions, enable pdo, pdo_mysql, mbstring, fileinfo, openssl, json, filter, and session. These are commonly enabled by default.
+- Recommended PHP options: memory_limit 256M, upload_max_filesize 4M, post_max_size 5M, max_execution_time 120.
+- Save the changes and wait a minute for them to take effect.
+
+3. CREATE THE MYSQL DATABASE
+
+- Open Websites > Manage > Databases > Management.
+- Create a new MySQL database and a new database user. Generate a long, unique database password.
+- Assign the user to the database with ALL privileges.
+- Record the exact database name, username, password, and MySQL hostname shown by hPanel. Hostinger often prefixes database and user names with the account ID; include the full prefixes.
+- The port is normally 3306. Use the hostname shown in hPanel rather than assuming localhost if Hostinger displays another host.
+
+4. CONFIGURE THE APPLICATION BEFORE UPLOAD
+
+- Open config.php in a plain-text editor.
+- Replace YOUR_DATABASE_NAME, YOUR_DATABASE_USER, and YOUR_DATABASE_PASSWORD with the exact hPanel values.
+- Set DB_HOST if the hPanel database hostname is not localhost. Keep DB_PORT as 3306 unless hPanel specifies another port.
+- Keep SITE_URL set to https://earnonventure.com.
+- Do not add quotes inside a password value beyond the existing PHP quotes. If a credential contains a single quote or backslash, escape it for a PHP single-quoted string, or preferably set DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASS, and SITE_URL as hosting environment variables.
+- Never share config.php or place a backup such as config.php.bak in public_html.
+
+5. DIRECT UPLOAD WITH HOSTINGER FILE MANAGER
+
+- In hPanel, open Websites > Manage > Files > File Manager.
+- Open public_html. Remove only Hostinger's default placeholder file if one is present. Do not delete unrelated files for another site.
+- Upload every project file and folder into public_html, including hidden .htaccess, the admin folder, assets folder, uploads folder, database.sql, config.php, functions.php, install.php, robots.txt, and sitemap.xml.
+- The final path must be public_html/install.php, not public_html/some-extra-folder/install.php.
+- File Manager may skip hidden files. Confirm public_html/.htaccess exists after extraction/upload.
+- Recommended permissions are 644 for files and 755 for folders. Set uploads to 755. Do not use 777.
+- If uploading a ZIP, create the ZIP so project files are at its top level. Upload to public_html, extract it, then delete the ZIP from the server.
+
+FTP ALTERNATIVE
+
+- In hPanel, open Files > FTP Accounts and note the FTP hostname, username, and port.
+- Connect with an SFTP/FTP client and upload the project contents directly into public_html.
+- Enable showing hidden files so .htaccess is uploaded.
+- Use binary/automatic transfer mode for images and text/automatic mode for PHP, CSS, JS, XML, and TXT.
+
+6. RUN THE ONE-TIME INSTALLER
+
+- Visit https://earnonventure.com/install.php in a private browser window.
+- Every requirement must show Ready. If Database connection shows Fix, recheck all config.php values and confirm the database user is assigned to the database.
+- Enter the first administrator's real name, email, and a unique password of at least 12 characters containing uppercase, lowercase, a number, and a symbol.
+- Submit once. The installer imports database.sql and creates the administrator. There are no default credentials.
+- If an administrator already exists, the installer locks itself and will not import or create another administrator.
+
+7. DELETE INSTALLATION FILES IMMEDIATELY
+
+- After a successful setup, delete public_html/install.php using File Manager or FTP. This is mandatory.
+- Delete public_html/database.sql as well after confirming the site works. It is not needed at runtime and exposes the schema if server rules are ever misconfigured.
+- Keep a private offline backup of database.sql and the application source instead.
+- Visit https://earnonventure.com/install.php and confirm it now returns 404 Not Found.
+
+8. VERIFY THE SITE
+
+- Open https://earnonventure.com and confirm the padlock is present with no mixed-content warning.
+- Test account registration, login, logout, password reset, contact form, opportunity listing, and member dashboard on desktop and mobile.
+- Sign in at https://earnonventure.com/admin/login.php and verify the overview, users, opportunities, applications, rewards, and settings pages.
+- Upload one test JPG, PNG, or WebP opportunity image under 3 MB and confirm it appears. Remove the test record afterward.
+- Confirm https://earnonventure.com/robots.txt and https://earnonventure.com/sitemap.xml load as plain text/XML.
+- Submit https://earnonventure.com/sitemap.xml in Google Search Console and Bing Webmaster Tools.
+
+9. EMAIL DELIVERY
+
+- Create support@earnonventure.com in hPanel Email, or configure the application with a transactional SMTP provider if email features are enabled.
+- Add/verify SPF, DKIM, and DMARC records using the values provided by Hostinger or the SMTP provider.
+- Test password-reset and contact notifications. Do not rely on PHP mail() for production delivery if messages are delayed or sent to spam.
+
+10. SECURITY, BACKUPS, AND OPERATIONS
+
+- Enable Hostinger automatic backups. Before application or schema changes, create an additional manual database backup in hPanel.
+- Store database credentials only in config.php or server environment variables. Never commit production credentials to source control.
+- Use unique administrator accounts and passwords. Do not share one admin login among staff.
+- Keep PHP on a supported 8.x version and install application updates promptly.
+- Review the admin activity log and failed login activity periodically.
+- Keep uploads limited to the application's allowed image types and size. Do not grant executable permissions to uploaded files.
+- Use hPanel's malware scanner and CDN/WAF features if included in the hosting plan.
+- For a restore, restore both public_html and the matching MySQL database from the same backup point.
+
+COMMON HOSTINGER FIXES
+
+- Error 500: Check hPanel > Advanced > Error Pages/Logs and PHP error logs. Confirm PHP 8.1+, valid config.php syntax, and that .htaccess directives are supported.
+- Database access denied: Copy the full prefixed database username/name from hPanel, reset the password if needed, and reassign the user with ALL privileges.
+- Installer says PDO MySQL is missing: Enable pdo_mysql under PHP Configuration and ensure the selected PHP version applies to this website.
+- CSS or images return 404: Confirm assets is directly under public_html and that uploaded file names preserve lowercase spelling.
+- Uploads fail: Confirm public_html/uploads exists, is writable by PHP, and uses 755 permissions. Verify PHP upload and post limits are above 3 MB.
+- Redirect loop: Disable duplicate HTTPS/www redirects in hPanel or other CDN settings, then use only one canonical HTTPS redirect layer.
+- Changes do not appear: Purge Hostinger cache/CDN and hard-refresh the browser.
+
+PRODUCTION CHECKLIST
+
+[ ] Domain resolves to Hostinger
+[ ] SSL active and HTTPS forced
+[ ] PHP 8.1+ and required extensions enabled
+[ ] Database/user created and assigned
+[ ] config.php contains production values
+[ ] Files are directly inside public_html
+[ ] .htaccess is present
+[ ] Installer completed once
+[ ] install.php and database.sql deleted from server
+[ ] Admin and member flows tested
+[ ] Email delivery tested
+[ ] Backups enabled
+[ ] Sitemap submitted
